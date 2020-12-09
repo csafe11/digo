@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="utf-8" />
+	
+        <title>Dobókocka műveletek</title>
+    </head>
+    <body>
+	<h2>3 dobókocka</h2>
+	
+        
+        <script>
+		
+//-------------------------------A dobások elvégzése, megjelenítése --------------------------------------------		
+		
+            function Random(min, max){
+                return Math.floor(Math.random()*(max-min)+min);
+            }
+            
+            
+            var a = [];
+			var b = [];
+			var c = [];
+            
+            
+            document.writeln("<hr />");
+            
+           
+			for(var i = 0; i<20; i++){
+                    a.push(Random(1,7));
+					b.push(Random(1,7));
+					c.push(Random(1,7));
+					
+                
+            document.writeln("<p><img src=" +a[i]+".png><img src=" +b[i]+".png><img src=" +c[i]+".png></p>");
+			
+			}
+			
+			document.writeln("<hr />");		
+			
+//------------------------------1. A dobások összegének átlaga -----------------------------------------
+            
+	document.writeln("<p>"+"1. Mennyi volt a dobások összegének átlaga?"+"</p>");
+			 var osszeg = 0;
+			for(var i = 0; i< a.length; i++){
+                  osszeg = osszeg + a[i];
+					
+					}
+			document.writeln("<p>A kocka dobásainak átlaga: "+osszeg/20+"</p>");
+			
+			 var osszeg = 0;
+			for(var i = 0; i< b.length; i++){
+                  osszeg = osszeg + b[i];
+					
+					}
+			document.writeln("<p>B kocka dobásainak átlaga: "+osszeg/20+"</p>");
+			
+			 var osszeg = 0;
+			for(var i = 0; i< c.length; i++){
+                  osszeg = osszeg + c[i];
+					
+					}
+			document.writeln("<p>C kocka dobásainak átlaga: "+osszeg/20+"</p>");
+			
+			document.writeln("<hr />");
+            
+//---------------------------------------------  2. Mennyi volt a dobások összegének maximuma? -----------------------------------	
+            
+			document.writeln("<p>"+"2. Mennyi volt a dobások összegének maximuma?"+"</p>");
+			
+				 var osszega = 0;
+			for(var i = 0; i< a.length; i++){
+                  osszega = osszega + a[i];				  			
+					}
+			document.writeln("<p>A kocka dobásainak összege: "+osszega+"</p>");
+			
+			 var osszegb = 0;
+			for(var i = 0; i< b.length; i++){
+                  osszegb = osszegb + b[i];				  			
+					}
+			document.writeln("<p>B kocka dobásainak összege: "+osszegb+"</p>");
+			
+			 var osszegc = 0;
+			for(var i = 0; i< c.length; i++){
+                  osszegc = osszegc + c[i];				  			
+					}
+			document.writeln("<p>C kocka dobásainak összege: "+osszegc+"</p>");
+			
+			var osszego = [osszega, osszegb, osszegc];
+			
+			var meret = osszego.length;
+				
+			var max = 0;
+			
+			for( i = 0; i<meret; i++){
+			if(osszego[i] > max)
+			max = osszego[i];			
+			}
+		
+			document.writeln("<p>A dobások összegének maximuma: "+max+"</p>");
+			
+			document.writeln("<hr />");
+		
+//-------------------------------------- 3. Hány dobásban fordult elő legalább egy 6-os szám? ------------------------------------------		
+            
+		  document.writeln("<p>"+"3. Hány dobásban fordult elő legalább egy 6-os szám?"+"</p>");
+		
+		var n = a.length;
+			var d = [];
+			
+			var j =0;
+			
+			for(i=0; i<n; i++)
+			if(a[i] >5)
+			{
+			d[j]=a[i];
+			j++;
+			}
+			
+			document.writeln("<p>A hatosok száma az A kocka dobásaikor: "+d.length+"</p>");
+			
+			var m = b.length;
+			var f = [];
+			
+			var j =0;
+			
+			for(i=0; i<m; i++)
+			if(b[i] >5)
+			{
+			f[j]=b[i];
+			j++;
+			}
+			
+			document.writeln("<p>A hatosok száma a B kocka dobásaikor: "+f.length+"</p>");
+			
+			var o = c.length;
+			var g = [];
+			
+			var j =0;
+			
+			for(i=0; i<o; i++)
+			if(c[i] >5)
+			{
+			g[j]=c[i];
+			j++;
+			}
+			
+			document.writeln("<p>A hatosok száma a C kocka dobásaikor: "+g.length+"</p>");
+			document.writeln("<hr />");
+
+//---------------------------------------------  4. Hányszor fordult elő a 6-os szám a dobások során összesen? ------------------------------
+
+
+document.writeln("<p>"+"4. Hányszor fordult elő a 6-os szám a dobások során összesen?"+"</p>");
+
+			
+ 
+	var egyes = [];
+       var egyes = a.concat(b, c);
+
+9 
+function szamolNegativ(atvettTomb){
+    var n = atvettTomb.length;
+    var szamlalo = 0;
+    for(i=0; i<n; i++){
+        if(atvettTomb[i] > 5)
+            szamlalo++;
+			}
+    return szamlalo;
+}
+document.writeln("<p>"+szamolNegativ(egyes)+" alkalommal"+"</p>");
+
+
+
+document.writeln("<hr />");
+			
+			
+//-------------------------------------------  5. Volt-e három 6-ost tartalmazó dobás ----------------------------------------------
+			document.writeln("<p>"+"5. Volt-e három 6-ost tartalmazó dobás"+"</p>");
+				
+				var k = 1;
+			for(i=0; i<20; i++)
+			if (a[i] ==6 && b[i]== 6 && c[i] == 6)
+			document.writeln("<p>Dobás sorszáma: "+(i+1)+"  Ez a dobás három 6-ost tartalmaz? !!!IGEN!!!"+"</p>");
+		
+		    else
+		    document.writeln("<p>Dobás sorszáma: "+(i+1)+"  Ez a dobás három 6-ost tartalmaz? !!!NEM!!!"+"</p>");
+		
+		
+			document.writeln("<hr />");
+			
+//-------------------------------------------- 6. Hányszor dobtunk mindhárom kockával azonos számot ------------------------------------			
+			
+			document.writeln("<p>"+"6. Hányszor dobtunk mindhárom kockával azonos számot"+"</p>");
+			
+			var x = [];			
+			
+			var j =0;
+			for(i=0; i<20; i++)
+			if(a[i] == b[i] && b[i] == c[i] && a[i] == c[i])
+			{
+			x[j]=c[i];
+			j++;
+			}
+			
+			document.writeln("<p>Dobásonként azonos szám mindhárom kockán: "+x.length+" esetben fordult elő."+"</p>");
+			
+			
+			document.writeln("<hr />");
+			
+//---------------------------------------7. feladat melyik dobás eredményezett három különböző számot? ---------------------
+			
+			document.writeln("<p>"+" 7. Melyik dobás eredményezett három különböző számot?"+"</p>");
+			
+		var y = [];
+			
+			var j =0;
+			for(i=0; i<20; i++)
+			if(a[i] != b[i] && b[i] != c[i] && a[i] != c[i])
+			{
+			y[j]=c[i];
+			j++;
+			}
+			
+			document.writeln("<p>Dobásonként különböző számok mindhárom kockán: "+y.length+" esetben fordult elő."+"</p>");			
+			document.writeln("<hr />");
+
+//------------------------------------ 8. feladat A dobások hány százalékában fordult elő a 2, 4, 6 os számok? ----------------------
+
+document.writeln("<p>"+"8. A dobások hány százalékában fordult elő a 2, 4, 6 os számok?"+"</p>");
+
+		var egyes = a.concat(b, c);
+
+		var ketto = egyes.filter(elofordul);
+document.writeln("<p>"+"A kettő " + (ketto.length / 60 * 100).toFixed(1) +"% - ban fordul elő"+"</p>");
+function elofordul(szama) {
+  return szama > 1 && szama < 3 ;
+ 
+}
+
+		var negy = egyes.filter(elofordul1);
+document.writeln("<p>"+"A négy " + (negy.length / 60 * 100).toFixed(1) +"% - ban fordul elő"+"</p>");
+function elofordul1(szamb) {
+  return szamb > 3 && szamb < 5 ;
+ 
+}
+
+		var hat = egyes.filter(elofordul2);
+document.writeln("<p>"+"A hat " + (hat.length / 60 * 100).toFixed(1) +"% - ban fordul elő"+"</p>");
+function elofordul2(szamc) {
+  return szamc > 5 ;
+ 
+}
+
+	document.writeln("<hr />");
+//---------------------------------------------9. feladat Volt-e olyan dobás, amikor a legnagyobb számot mutató kocka értéke a másik két kocka értékének összege
+//------------------------------------------------lett? Ha igen, mik voltak ezek a számok?--------------------------------------------------
+	
+			
+
+			
+			document.writeln("<p>"+"9. Volt-e olyan dobás, amikor a legnagyobb számot mutató kocka értéke a másik két kocka értékének összege lett?"+"</p>");
+			
+		
+			
+			var erdmeny = false;
+				for(i=0;i<20;i++){
+			if(a[i] + b[i] == c[i] || a[i] + c[i] == b[i] || b[i] + c[i] == a[i])
+			{eredmeny = true;
+			eredmeny = "van";
+			document.write("<p>"+(i+1)+"."+" dobás két kockájának összege a harmadik kocka értéke. "+"</p>");
+			}
+			else
+			{
+			document.write("<p>"+(i+1)+". dobásban nem volt. "+"</p>");
+			}		
+                }
+
+			document.writeln("<hr />");
+			
+//-------------------------------------------------------------10. feladat Összesen melyikszámot mutatták a legkevesebbszer a kockák? --------------------------------------------
+									
+									
+									document.writeln("<p>"+" 10. Összesen melyik számot mutatták a legkevesebbszer a kockák?"+"</p>");
+
+									var egyes = a.concat(b, c);
+									
+									var firsta = egyes.filter(elofordul3);
+document.writeln( "Az egy " + firsta.length + " alkalommal fordul elő.  " );
+function elofordul3(valued) {
+  return valued < 2 ;
+ 
+}
+								
+								
+								
+								
+								var firstb = egyes.filter(elofordul4);
+document.writeln( " A kettő " + firstb.length + " alkalommal fordul elő.  " );
+function elofordul4(valuee) {
+  return valuee > 1 && valuee < 3 ;
+ 
+}
+						
+						var firstc = egyes.filter(elofordul5);
+document.writeln( " A három " + firstc.length + " alkalommal fordul elő.  " );
+function elofordul5(valuef) {
+  return valuef > 2 && valuef < 4 ;
+ 
+}
+		var firstd = egyes.filter(elofordul6);
+document.writeln( " A négy " + firstd.length + " alkalommal fordul elő.  " );
+function elofordul6(valueg) {
+  return valueg > 3 && valueg < 5 ;
+ 
+}
+
+		var firste = egyes.filter(elofordul7);
+document.writeln( " Az öt " + firste.length + " alkalommal fordul elő" );
+function elofordul7(valueh) {
+  return valueh > 4 && valueh < 6 ;
+ 
+}
+
+
+		var firstf = egyes.filter(elofordul8);
+document.writeln( " A hat " + firstf.length + " alakalommal fordul elő.  " );
+function elofordul8(valuek) {
+  return valuek > 5;
+ 
+}
+
+			var legkevesebb = [];
+
+			legkevesebb.push(firsta.length, firstb.length, firstc.length, firstd.length, firste.length, firstf.length);
+			
+			  
+  var indexMenor = legkevesebb.indexOf(Math.min(...legkevesebb));
+  
+  document.writeln("<p>"+"Legkevesebbszer a "+(indexMenor+1)+" -t mutatták a kockák"+"</p>");
+
+ document.writeln("<hr />");
+		
+			
+
+//------------------------------------------------------ 11. Milyen összeg fordult elő többször is? --------------------------------------------
+
+		document.writeln("<p>"+" 11. Milyen összeg fordult elő többször is?"+"</p>");
+		
+		var ker = [];
+		
+		for(i=0; i<20; i++){
+		var osz = a[i] + b[i] + c[i];
+		ker.push(osz);
+			}
+		
+		for (i = 0;  i < ker.length; i++){    
+                for (j= i+1; j < ker.length; j++){                         
+
+                                if(ker[i] == ker[j])
+                                    {
+                                            document.writeln("<p>"+(i+1)+". dobás"+ker[j]+" ez az összeg többször is előfordult!"+"</p>");
+                                    }
+		
+                                                }
+                                            }
+		document.writeln("<hr />");
+//----------------------------------------- 12. Voltak-e egymással egyező dobások? (A kockák sorrendje nem számít.) -------------------------------		
+		
+		document.writeln("<p>"+" 12. Voltak-e egymással egyező dobások? (A kockák sorrendje nem számít.)"+"</p>");
+		
+		 
+		for(i=0; i<ker.length; i++){
+					
+		 for (j= i+1; j < ker.length; j++){
+		 
+		 if(a[i]  == a[j] && b[i] == b[j] && c[i] == c[j])
+		 {
+		 
+		 
+		 document.writeln("<p>"+a[i]+", "+b[i]+", "+c[i]+" ez a dobás többször előfordult!"+" Keresd a "+j+". helyen"+"</p>");
+		 }
+		 else {
+		//document.writeln("<p>"+"Nem volt ilyen dobás"+"</p>");
+		continue;
+		 }
+		
+		 }
+		 //document.writeln("<p>"+"Nem volt ilyen dobás"+"</p>");
+		 }
+		 
+		 document.writeln("<p>"+"Nem volt ilyen dobás"+"</p>");
+
+
+			        </script>
+    </body>
+</html>

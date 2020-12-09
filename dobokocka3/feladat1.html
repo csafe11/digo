@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="utf-8" />
+        <title>JS Példa</title>
+    </head>
+    <body>
+        <style>
+            table{
+                border-collapse: collapse;
+            }
+            td{
+                border: 1px solid black;
+            }
+        </style>
+        <h2>Feladat megoldás 1</h2>
+        <img src="kocka-kepek/1.PNG">
+        <script>
+            function Random(min, max){
+                return Math.floor(Math.random()*(max-min)+min);
+            }
+            function Feltolt(tomb){
+                for(var i = 0; i<20; i++){
+                    tomb.push(Random(1,7));
+                }
+            }
+            var A = [];
+            var B = [];
+            var C = [];
+            Feltolt(A);
+            Feltolt(B);
+            Feltolt(C);
+            document.writeln("<p>A: "+A.toString()+"</p>");
+            document.writeln("<p>B: "+B.toString()+"</p>");
+            document.writeln("<p>C: "+C.toString()+"</p>");
+            document.writeln("<table width='100%'>");
+            for(var i = 0; i<20; i++){          
+                document.writeln("<tr>");
+                    document.writeln("<td>"+(i+1)+". dobás:</td>");
+                    document.writeln("<td><img src='kocka-kepek/"+(A[i])+".PNG'></td>");
+                    document.writeln("<td><img src='kocka-kepek/"+(B[i])+".PNG'></td>");
+                    document.writeln("<td><img src='kocka-kepek/"+(C[i])+".PNG'></td>");
+                document.writeln("</tr>"); 
+            }
+            document.writeln("</table>");
+
+            // 1. Mennyi volt a dobások összegének átlaga?
+            var osszeg = 0;
+            for(var i = 0; i<20; i++){
+                osszeg += (A[i]+B[i]+C[i])
+            }
+            var eredmeny = osszeg / 20;
+            document.writeln("<p>A dobások összegének az átlaga: "+eredmeny+".</p>");
+            
+            // 2. Mennyi volt a dobások összegének maximuma?
+            eredmeny = A[0]+B[0]+C[0];
+            for(var i = 0; i<20; i++){
+                if(A[i]+B[i]+C[i] > eredmeny){
+                    eredmeny = A[i]+B[i]+C[i];
+                }
+            }
+            document.writeln("<p>A dobások összegének a maximuma: "+eredmeny+".</p>");
+            
+            //3. Hány dobásban fordult elő legalább egy 6-os szám?
+            eredmeny = 0;
+            for(var i = 0; i<20; i++){
+                if(A[i]==6 || B[i]==6 || C[i] == 6){
+                    eredmeny++;
+                }
+            }
+            document.writeln("<p>"+eredmeny+" dobásban fordult elő a 6-os.</p>");
+            
+            //4. Hányszor fordult elő a 6-os szám a dobások során összesen?
+            eredmeny = 0;
+            for(var i = 0; i<20; i++){
+                if(A[i]==6){
+                    eredmeny++;
+                }
+                if(B[i]==6){
+                    eredmeny++;
+                }
+                if(C[i]==6){
+                    eredmeny++;
+                }
+            }
+            document.writeln("<p>"+eredmeny+" 6-os dobás volt összesen.</p>");
+            
+            //5. Volt-e három 6-ost tartalmazó dobás?
+            var j = 0;
+            while(j<20 && !(A[j]==6&&B[j]==6&&C[j]==6)){
+                  j++;
+            }
+            document.writeln("<p>"+((j<20)?"Volt-e három 6-ost tartalmazó dobás.":"Nem volt-e három 6-ost tartalmazó dobás.")+"</p>");
+            
+            //6. Hányszor dobtunk mindhárom kockával azonos számot?
+            eredmeny = 0;
+            for(var i = 0; i<20; i++){
+                if(A[i]==B[i] && B[i]==C[i]){
+                    eredmeny++;
+                }
+            }
+            document.writeln("<p>"+eredmeny+" alkalommal fordult elő három azonos szám.</p>");
+            
+            //7. Melyik dobás eredményezett három különböző számot?
+            j = 0;
+            while(j<20 && !(A[j]!=B[j] && A[j]!=C[j] && B[j]!=C[j])){
+                  j++;
+            }
+            document.writeln("<p>"+((j<20)?"A(z) "+(j+1)+". dobás volt 3 különböző szám.":"Nem volt három különböző szám.")+"</p>");
+            
+            //8. A dobások hány százalékában fordult elő valamelyik kockán 2-es, 4-es, vagy 6-os?
+            eredmeny = 0;
+            for(var i = 0; i<20; i++){
+                if(A[i]%2==0 || B[i]%2==0 || C[i]%2==0){
+                    eredmeny++;
+                }
+            }
+            document.writeln("<p>"+(eredmeny*5)+"%-a a dobásoknak tartalmazott 2-es, 4-es vagy 6-os számot.</p>");
+            
+            //9. Volt-e olyan dobás, amikor a legnagyobb számot mutató kocka értéke a másik két kocka értékének összege lett? Ha igen, mik voltak ezek a számok?
+            j = 0;
+            while(j<20 && !(Math.max(Math.max(A[j],B[j]),C[j]) == (A[j]+B[j]+C[j])-(Math.max(Math.max(A[j],B[j]),C[j]) ))){
+                  j++;
+            }
+            document.writeln("<p>"+((j<20)?"A(z) "+(j+1)+". sorban az egyik szám a másik kettő összege.":"Nincs olyan sor, ahol az egyik szám a másik kettő összege.")+"</p>");
+            
+            //10. Összesen melyik számot mutatták a legkevesebbszer a kockák?
+            var darabok = [];
+            for(var i=0; i<6; i++){
+                darabok[i] = 0;
+            }          
+            for(var i=0; i<20; i++){
+                darabok[A[i]-1]++;
+                darabok[(B[i]-1)]++;
+                darabok[(C[i]-1)]++;
+            }
+            document.writeln("<p>Darabok: "+darabok.toString()+"</p>");
+            eredmeny=0;
+            for(var i=1; i<6; i++){
+                if(darabok[i]<darabok[eredmeny]){
+                    eredmeny = i;
+                }
+            }
+            document.writeln("<p>A(z) "+(eredmeny+1)+" számot mutatták legkevesebbszer a kockák.</p>");
+            
+            //11. Milyen összeg fordult elő többször is?
+            talalat = false;
+            var i=0;
+            while(i<20 && !talalat){
+                var j=i+1;
+                while(j<20 && !talalat){
+                    talalat = (A[i]+B[i]+C[i]==A[j]+B[j]+C[j]);
+                    j++
+                }
+                i++
+            }
+            document.writeln("<p>"+(talalat ?"A(z) "+i+". és a(z) "+j+". sor összege egyenlő.":"Nincs két olyan sor, amelyek összege egyenlő.")+"</p>");
+            
+            //12. Voltak-e egymással egyező dobások (A számok sorrendje nem számít)?
+            talalat = false;
+            var i=0;
+            while(i<20 && !talalat){
+                var j=i+1;
+                while(j<20 && !talalat){
+                    talalat = (lk(A[i],B[i],C[i])==lk(A[j],B[j],C[j]) && ln(A[i],B[i],C[i])==ln(A[j],B[j],C[j]) && koz(A[i],B[i],C[i])==koz(A[j],B[j],C[j]));
+                    j++
+                }
+                i++
+            }
+            document.writeln("<p>"+(talalat ?"A(z) "+i+". és a(z) "+j+". sor megegyezik.":"Nincs két olyan sor, ami megegyezik.")+"</p>");
+            
+            function lk(a,b,c){ //legkisebb
+                return Math.max(Math.max(a,b),c);
+            }
+            function ln(a,b,c){ //legnagyobb
+                return Math.min(Math.min(a,b),c);
+            }
+            function koz(a,b,c){ //kozepso
+                return (a+b+c)-lk(a,b,c)-ln(a,b,c);
+            }
+        </script>
+    </body>
+</html>
